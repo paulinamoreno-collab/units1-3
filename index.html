@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Pilot Exam – Units 1–3</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #faf8f3;
+    --accent: #c8541a;
+    --accent2: #2563a8;
+    --soft: #e8e4d9;
+    --correct: #2d7a4f;
+    --wrong: #c0392b;
+    --gold: #c8991a;
+    --rule: #c8c4b8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ─── HEADER ─── */
+  .site-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(200,84,26,.18);
+  }
+  .site-header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 10%;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(37,99,168,.15);
+  }
+  .header-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+  .exam-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: rgba(250,248,243,.6);
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  /* Student fields */
+  .student-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media(max-width:560px){ .student-grid { grid-template-columns: 1fr; } }
+  .field-group { display: flex; flex-direction: column; gap: 4px; }
+  .field-group label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(250,248,243,.5); }
+  .field-group input {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .field-group input:focus { border-color: var(--accent); }
+  .field-group input::placeholder { color: rgba(250,248,243,.25); }
+
+  /* ─── MAIN ─── */
+  main { max-width: 780px; margin: 0 auto; padding: 48px 20px 100px; }
+
+  /* Score bar */
+  .score-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    box-shadow: 0 2px 16px rgba(0,0,0,.18);
+  }
+  .score-bar span { color: var(--accent); font-weight: 500; }
+  .score-pill {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    display: none;
+  }
+
+  /* ─── UNIT HEADER ─── */
+  .unit-header {
+    display: flex; align-items: center; gap: 16px;
+    margin: 48px 0 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .unit-badge {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .unit-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .unit-pts {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* ─── SECTION ─── */
+  .section { margin-bottom: 40px; }
+  .section-head {
+    display: flex; align-items: baseline; gap: 10px;
+    margin-bottom: 6px;
+  }
+  .section-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent2);
+    min-width: 20px;
+  }
+  .section-title { font-weight: 600; font-size: 15px; }
+  .section-pts {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--rule);
+    white-space: nowrap;
+  }
+  .instruction {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 14px;
+    padding-left: 30px;
+  }
+  .example {
+    font-size: 13px;
+    background: var(--soft);
+    border-left: 3px solid var(--accent);
+    padding: 8px 14px;
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+    margin-left: 30px;
+  }
+
+  /* ─── QUESTION TYPES ─── */
+
+  /* Fill in blank */
+  .q-fill { display: flex; align-items: baseline; gap: 8px; margin: 10px 0 10px 30px; flex-wrap: wrap; }
+  .q-num { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent2); min-width: 20px; font-weight: 600; }
+  .q-text { flex: 1; font-size: 15px; }
+  .blank {
+    display: inline-block;
+    border: none; border-bottom: 2px solid var(--ink);
+    background: transparent;
+    width: 120px; min-width: 80px;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    padding: 2px 4px;
+    color: var(--ink);
+    transition: border-color .2s;
+  }
+  .blank:focus { border-color: var(--accent2); }
+  .blank.correct { border-color: var(--correct); color: var(--correct); }
+  .blank.wrong { border-color: var(--wrong); color: var(--wrong); }
+
+  /* MCQ */
+  .q-mcq { margin: 12px 0 12px 30px; }
+  .q-mcq-stem { font-size: 15px; margin-bottom: 8px; display: flex; gap: 8px; align-items: baseline; }
+  .options { display: flex; flex-direction: column; gap: 6px; padding-left: 20px; }
+  .option-label {
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer;
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: 1.5px solid var(--soft);
+    background: #fff;
+    transition: all .15s;
+    font-size: 14px;
+    user-select: none;
+  }
+  .option-label:hover { border-color: var(--accent2); background: #f0f6ff; }
+  .option-label input[type=radio] { display: none; }
+  .opt-letter {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--soft);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    flex-shrink: 0;
+    transition: all .15s;
+  }
+  .option-label:has(input:checked) { border-color: var(--accent2); background: #eef4ff; }
+  .option-label:has(input:checked) .opt-letter { background: var(--accent2); color: #fff; }
+  .option-label.correct-opt { border-color: var(--correct) !important; background: #edfaf3 !important; }
+  .option-label.correct-opt .opt-letter { background: var(--correct) !important; color: #fff !important; }
+  .option-label.wrong-opt { border-color: var(--wrong) !important; background: #fdf0ee !important; }
+  .option-label.wrong-opt .opt-letter { background: var(--wrong) !important; color: #fff !important; }
+
+  /* True/False */
+  .q-tf { display: flex; align-items: center; gap: 10px; margin: 10px 0 10px 30px; flex-wrap: wrap; }
+  .tf-text { flex: 1; font-size: 15px; }
+  .tf-options { display: flex; gap: 8px; }
+  .tf-btn {
+    padding: 5px 16px;
+    border: 1.5px solid var(--soft);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px; font-weight: 500;
+    background: #fff;
+    transition: all .15s;
+    color: var(--ink);
+  }
+  .tf-btn:hover { border-color: var(--accent2); }
+  .tf-btn.selected { border-color: var(--accent2); background: var(--accent2); color: #fff; }
+  .tf-btn.correct-tf { border-color: var(--correct) !important; background: var(--correct) !important; color: #fff !important; }
+  .tf-btn.wrong-tf { border-color: var(--wrong) !important; background: var(--wrong) !important; color: #fff !important; }
+
+  /* Reorder */
+  .q-reorder { display: flex; align-items: baseline; gap: 8px; margin: 12px 0 12px 30px; flex-wrap: wrap; }
+  .reorder-input {
+    border: none; border-bottom: 2px solid var(--ink);
+    background: transparent;
+    width: 100%; max-width: 420px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    outline: none; padding: 2px 4px;
+    color: var(--ink);
+    transition: border-color .2s;
+  }
+  .reorder-input:focus { border-color: var(--accent2); }
+  .scrambled { font-size: 12px; color: #888; font-style: italic; flex: 100%; padding-left: 28px; }
+
+  /* Word bank */
+  .word-bank {
+    background: var(--soft);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 0 0 16px 30px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+    align-items: center;
+  }
+  .word-bank-label { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #888; width: 100%; }
+  .wb-word {
+    background: #fff;
+    border: 1.5px solid var(--rule);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 13px;
+  }
+
+  /* Match table */
+  .match-table { margin-left: 30px; margin-bottom: 8px; width: 100%; border-collapse: collapse; }
+  .match-table td { padding: 8px 12px; vertical-align: middle; font-size: 14px; }
+  .match-table .col-q { width: 55%; border-right: 2px solid var(--soft); }
+  .match-table .col-a { color: #555; width: 45%; }
+  .match-table tr:nth-child(odd) td { background: var(--soft); }
+  .match-select {
+    border: none; border-bottom: 2px solid var(--ink);
+    background: transparent;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    outline: none; cursor: pointer;
+    color: var(--ink);
+    padding: 2px 4px;
+    margin-left: 4px;
+    width: 36px;
+  }
+
+  /* Reading box */
+  .reading-box {
+    background: #fff;
+    border: 1.5px solid var(--rule);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 0 0 18px 30px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .reading-box .person { margin-bottom: 14px; }
+  .reading-box .person:last-child { margin-bottom: 0; }
+  .reading-box strong { color: var(--accent2); }
+
+  /* ─── SUBMIT ─── */
+  .submit-wrap { text-align: center; margin-top: 60px; }
+  .btn-submit {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 16px 48px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: .02em;
+    transition: all .2s;
+    box-shadow: 0 4px 20px rgba(200,84,26,.3);
+  }
+  .btn-submit:hover { background: #a84215; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,84,26,.35); }
+
+  /* ─── RESULTS ─── */
+  .result-card {
+    display: none;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 12px;
+    padding: 40px;
+    margin-top: 48px;
+    text-align: center;
+  }
+  .result-card.visible { display: block; animation: fadeUp .5s ease; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+  .result-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .result-label { font-size: 14px; color: rgba(250,248,243,.6); margin-top: 4px; margin-bottom: 24px; }
+  .result-msg { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+  .result-sub { font-size: 14px; color: rgba(250,248,243,.6); }
+  .unit-scores { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 24px; }
+  .unit-score-chip {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px;
+    padding: 10px 20px;
+    text-align: center;
+  }
+  .unit-score-chip .chip-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(250,248,243,.5); }
+  .unit-score-chip .chip-val { font-family: 'DM Mono', monospace; font-size: 1.4rem; color: var(--paper); }
+
+  .divider { border: none; border-top: 1.5px solid var(--soft); margin: 10px 0; }
+
+  /* feedback */
+  .feedback-note { font-size: 12px; margin-left: 4px; font-style: italic; }
+  .feedback-note.c { color: var(--correct); }
+  .feedback-note.w { color: var(--wrong); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <p class="exam-label">Examen Piloto · English Language</p>
+    <h1>Units 1 – 3</h1>
+    <p class="subtitle">Números · Países · Familia · Fechas · Comida · Verbo To Be</p>
+    <div class="student-grid">
+      <div class="field-group"><label>Nombre del alumno</label><input type="text" id="name" placeholder="Nombre completo"></div>
+      <div class="field-group"><label>Fecha</label><input type="text" id="date" placeholder="dd / mm / aaaa"></div>
+      <div class="field-group"><label>Grupo / Nivel</label><input type="text" id="group" placeholder="Ej. Básico A"></div>
+      <div class="field-group"><label>Maestro(a)</label><input type="text" id="teacher" placeholder="Nombre del maestro"></div>
+    </div>
+  </div>
+</header>
+
+<div class="score-bar">
+  <span>ENGLISH PILOT EXAM</span>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span id="live-score" style="color:rgba(250,248,243,.5)">Total: 70 pts</span>
+    <div class="score-pill" id="score-pill">—</div>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     UNIT 1
+══════════════════════════════════════════ -->
+<div class="unit-header">
+  <span class="unit-badge">Unit 1</span>
+  <span class="unit-title">Numbers · Countries & Nationalities · Verb To Be</span>
+  <span class="unit-pts">32 pts</span>
+</div>
+
+<!-- A: Complete letters -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">A.</span>
+    <span class="section-title">Complete the missing letters</span>
+    <span class="section-pts">6 pts</span>
+  </div>
+  <p class="instruction">Write the missing letters to complete the numbers. (1 pt each)</p>
+  <p class="example"><strong>EXAMPLE:</strong> two (2)</p>
+
+  <div class="q-fill"><span class="q-num">1</span><span class="q-text">ei<input class="blank" data-answer="gh" id="a1" maxlength="4" size="4">t (8)</span></div>
+  <div class="q-fill"><span class="q-num">2</span><span class="q-text">th<input class="blank" data-answer="r" id="a2" maxlength="3" size="3">ee (3)</span></div>
+  <div class="q-fill"><span class="q-num">3</span><span class="q-text">si<input class="blank" data-answer="x" id="a3" maxlength="3" size="3"> (6)</span></div>
+  <div class="q-fill"><span class="q-num">4</span><span class="q-text">ni<input class="blank" data-answer="n" id="a4" maxlength="3" size="3">e (9)</span></div>
+  <div class="q-fill"><span class="q-num">5</span><span class="q-text">fo<input class="blank" data-answer="u" id="a5" maxlength="3" size="3">r (4)</span></div>
+  <div class="q-fill"><span class="q-num">6</span><span class="q-text">el<input class="blank" data-answer="e" id="a6" maxlength="3" size="3">ven (11)</span></div>
+</div>
+
+<!-- B: Nationalities MCQ -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">B.</span>
+    <span class="section-title">Circle the correct answer — Countries & Nationalities</span>
+    <span class="section-pts">8 pts</span>
+  </div>
+  <p class="instruction">Choose A or B to complete each sentence. (1 pt each)</p>
+
+  <!-- Q B1 -->
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">1</span> Maria is from Rome. She's ___</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="b1" value="A"><span class="opt-letter">A</span> Italy</label>
+      <label class="option-label"><input type="radio" name="b1" value="B"><span class="opt-letter">B</span> Italian</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">2</span> Mr. Smith is from London in ___</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="b2" value="A"><span class="opt-letter">A</span> England</label>
+      <label class="option-label"><input type="radio" name="b2" value="B"><span class="opt-letter">B</span> English</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">3</span> Cairo is the capital city of ___</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="b3" value="A"><span class="opt-letter">A</span> Egypt</label>
+      <label class="option-label"><input type="radio" name="b3" value="B"><span class="opt-letter">B</span> Egyptian</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">4</span> Pedro is a teacher in a school in ___</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="b4" value="A"><span class="opt-letter">A</span> Chile</label>
+      <label class="option-label"><input type="radio" name="b4" value="B"><span class="opt-letter">B</span> Chilean</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">5</span> I'm a student at a university in ___</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="b5" value="A"><span class="opt-letter">A</span> Germany</label>
+      <label class="option-label"><input type="radio" name="b5" value="B"><span class="opt-letter">B</span> German</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">6</span> Sofia is a nurse in a hospital in ___</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="b6" value="A"><span class="opt-letter">A</span> Argentina</label>
+      <label class="option-label"><input type="radio" name="b6" value="B"><span class="opt-letter">B</span> Argentinian</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">7</span> Chen is from Beijing. He's ___</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="b7" value="A"><span class="opt-letter">A</span> China</label>
+      <label class="option-label"><input type="radio" name="b7" value="B"><span class="opt-letter">B</span> Chinese</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">8</span> My name's Claire and I'm from ___</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="b8" value="A"><span class="opt-letter">A</span> Canada</label>
+      <label class="option-label"><input type="radio" name="b8" value="B"><span class="opt-letter">B</span> Canadian</label>
+    </div>
+  </div>
+</div>
+
+<!-- C: Verb To Be MCQ -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">C.</span>
+    <span class="section-title">Circle the correct verb form</span>
+    <span class="section-pts">5 pts</span>
+  </div>
+  <p class="instruction">Choose A or B. (1 pt each)</p>
+
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">1</span> My last name ___ Lopez.</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="c1" value="A"><span class="opt-letter">A</span> is</label>
+      <label class="option-label"><input type="radio" name="c1" value="B"><span class="opt-letter">B</span> are</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">2</span> I ___ from Bogotá.</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="c2" value="A"><span class="opt-letter">A</span> am</label>
+      <label class="option-label"><input type="radio" name="c2" value="B"><span class="opt-letter">B</span> is</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">3</span> I ___ a doctor.</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="c3" value="A"><span class="opt-letter">A</span> 'm not</label>
+      <label class="option-label"><input type="radio" name="c3" value="B"><span class="opt-letter">B</span> isn't</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">4</span> ___ you from Paris? Yes, I am.</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="c4" value="A"><span class="opt-letter">A</span> Am</label>
+      <label class="option-label"><input type="radio" name="c4" value="B"><span class="opt-letter">B</span> Are</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">5</span> She ___ from Mexico City. She's from Puebla.</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="c5" value="A"><span class="opt-letter">A</span> 'm not</label>
+      <label class="option-label"><input type="radio" name="c5" value="B"><span class="opt-letter">B</span> 's not</label>
+    </div>
+  </div>
+</div>
+
+<!-- D: Word order -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">D.</span>
+    <span class="section-title">Put the words in order to make questions</span>
+    <span class="section-pts">7 pts</span>
+  </div>
+  <p class="instruction">Write the words in the correct order. (1 pt each)</p>
+  <p class="example"><strong>EXAMPLE:</strong> What / name / your / 's / ?  →  What's your name?</p>
+
+  <div class="q-reorder"><span class="q-num">1</span><span class="scrambled">from / you / Are / Italy / ?</span><input class="reorder-input" data-answer="are you from italy" id="d1" placeholder="Escribe la pregunta…"></div>
+  <div class="q-reorder"><span class="q-num">2</span><span class="scrambled">your / phone / number / What / 's / ?</span><input class="reorder-input" data-answer="what's your phone number" id="d2" placeholder="Escribe la pregunta…"></div>
+  <div class="q-reorder"><span class="q-num">3</span><span class="scrambled">email / your / What / address / 's / ?</span><input class="reorder-input" data-answer="what's your email address" id="d3" placeholder="Escribe la pregunta…"></div>
+  <div class="q-reorder"><span class="q-num">4</span><span class="scrambled">student / you / Are / a / ?</span><input class="reorder-input" data-answer="are you a student" id="d4" placeholder="Escribe la pregunta…"></div>
+  <div class="q-reorder"><span class="q-num">5</span><span class="scrambled">name / college / your / What / of / 's / the / ?</span><input class="reorder-input" data-answer="what's the name of your college" id="d5" placeholder="Escribe la pregunta…"></div>
+  <div class="q-reorder"><span class="q-num">6</span><span class="scrambled">last / What / name / your / 's / ?</span><input class="reorder-input" data-answer="what's your last name" id="d6" placeholder="Escribe la pregunta…"></div>
+  <div class="q-reorder"><span class="q-num">7</span><span class="scrambled">Where / you / are / from / ?</span><input class="reorder-input" data-answer="where are you from" id="d7" placeholder="Escribe la pregunta…"></div>
+</div>
+
+<!-- E: Reading Unit 1 -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">E.</span>
+    <span class="section-title">Reading – True or False</span>
+    <span class="section-pts">6 pts</span>
+  </div>
+  <p class="instruction">Read the texts and choose True or False. (1 pt each)</p>
+
+  <div class="reading-box">
+    <div class="person"><strong>Carlos Rivera, 28</strong><br>Carlos is a tour guide in Barcelona, Spain. But he isn't Spanish; he's from Colombia. His family lives in Madrid now.</div>
+    <div class="person"><strong>Emily Johnson, 21</strong><br>Emily is a student at a university in Canada. But she isn't Canadian; she's British, from Manchester. Her parents are professors in Toronto.</div>
+    <div class="person"><strong>Akira Tanaka, 35</strong><br>Akira is an engineer. He's from Osaka, Japan, but now he works in Tokyo in a technology company.</div>
+  </div>
+
+  <div class="q-tf"><span class="q-num">1</span><span class="tf-text">Carlos works as a tour guide.</span><div class="tf-options"><button class="tf-btn" data-group="e1" data-val="T" data-answer="T">True</button><button class="tf-btn" data-group="e1" data-val="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">2</span><span class="tf-text">Carlos is from Spain.</span><div class="tf-options"><button class="tf-btn" data-group="e2" data-val="T">True</button><button class="tf-btn" data-group="e2" data-val="F" data-answer="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">3</span><span class="tf-text">Emily is a student.</span><div class="tf-options"><button class="tf-btn" data-group="e3" data-val="T" data-answer="T">True</button><button class="tf-btn" data-group="e3" data-val="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">4</span><span class="tf-text">Emily is Canadian.</span><div class="tf-options"><button class="tf-btn" data-group="e4" data-val="T">True</button><button class="tf-btn" data-group="e4" data-val="F" data-answer="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">5</span><span class="tf-text">The engineer's name is Akira Tanaka.</span><div class="tf-options"><button class="tf-btn" data-group="e5" data-val="T" data-answer="T">True</button><button class="tf-btn" data-group="e5" data-val="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">6</span><span class="tf-text">Akira is Japanese.</span><div class="tf-options"><button class="tf-btn" data-group="e6" data-val="T" data-answer="T">True</button><button class="tf-btn" data-group="e6" data-val="F">False</button></div></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     UNIT 2
+══════════════════════════════════════════ -->
+<div class="unit-header">
+  <span class="unit-badge">Unit 2</span>
+  <span class="unit-title">Family · Adjectives · Dates · Verb To Be</span>
+  <span class="unit-pts">32 pts</span>
+</div>
+
+<!-- A: Word categories -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">A.</span>
+    <span class="section-title">Write the words in the correct category</span>
+    <span class="section-pts">10 pts</span>
+  </div>
+  <p class="instruction">Classify each word as Masculine, Feminine, or Both. (1 pt each)</p>
+  <div class="word-bank">
+    <span class="word-bank-label">Word Bank</span>
+    <span class="wb-word">uncle</span><span class="wb-word">niece</span><span class="wb-word">nephew</span>
+    <span class="wb-word">mother</span><span class="wb-word">father</span><span class="wb-word">grandparents</span>
+    <span class="wb-word">wife</span><span class="wb-word">husband</span><span class="wb-word">children</span>
+    <span class="wb-word">brother</span><span class="wb-word">sister</span>
+  </div>
+  <!-- Each word gets a select -->
+  <div style="margin-left:30px;">
+    <table style="border-collapse:collapse;font-size:14px;width:100%;">
+      <thead><tr style="background:var(--ink);color:var(--paper);">
+        <th style="padding:8px 14px;text-align:left;">Word</th>
+        <th style="padding:8px 14px;text-align:left;">Category</th>
+      </tr></thead>
+      <tbody id="cat-table">
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);">uncle</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);"><select class="cat-select" data-answer="M" data-word="uncle"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);">niece</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);"><select class="cat-select" data-answer="F" data-word="niece"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);">nephew</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);"><select class="cat-select" data-answer="M" data-word="nephew"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);">mother</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);"><select class="cat-select" data-answer="F" data-word="mother"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);">father</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);"><select class="cat-select" data-answer="M" data-word="father"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);">grandparents</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);"><select class="cat-select" data-answer="B" data-word="grandparents"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);">wife</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);"><select class="cat-select" data-answer="F" data-word="wife"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);">husband</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);"><select class="cat-select" data-answer="M" data-word="husband"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);">children</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);"><select class="cat-select" data-answer="B" data-word="children"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);">brother</td><td style="padding:7px 14px;border-bottom:1px solid var(--soft);background:var(--soft);"><select class="cat-select" data-answer="M" data-word="brother"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+        <tr><td style="padding:7px 14px;">sister</td><td style="padding:7px 14px;"><select class="cat-select" data-answer="F" data-word="sister"><option value="">— select —</option><option>Masculine</option><option>Feminine</option><option>Both</option></select></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- B: Adjectives -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">B.</span>
+    <span class="section-title">Complete with adjectives</span>
+    <span class="section-pts">4 pts</span>
+  </div>
+  <p class="instruction">Use: tall · young · boring · friendly · old (1 pt each)</p>
+  <div class="word-bank"><span class="word-bank-label">Word Bank</span><span class="wb-word">tall</span><span class="wb-word">young</span><span class="wb-word">boring</span><span class="wb-word">friendly</span><span class="wb-word">old</span></div>
+
+  <div class="q-fill"><span class="q-num">1</span><span class="q-text">My cousin is five. He's very <input class="blank" data-answer="young" id="ba1" size="8" maxlength="10">.</span></div>
+  <div class="q-fill"><span class="q-num">2</span><span class="q-text">My teacher is really <input class="blank" data-answer="friendly" id="ba2" size="10" maxlength="10">. She always helps us.</span></div>
+  <div class="q-fill"><span class="q-num">3</span><span class="q-text">My grandfather is ninety. He's very <input class="blank" data-answer="old" id="ba3" size="6" maxlength="8">.</span></div>
+  <div class="q-fill"><span class="q-num">4</span><span class="q-text">My job is <input class="blank" data-answer="boring" id="ba4" size="8" maxlength="10">. I don't enjoy it.</span></div>
+</div>
+
+<!-- C: Dates -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">C.</span>
+    <span class="section-title">Answer the questions about dates and months</span>
+    <span class="section-pts">7 pts</span>
+  </div>
+  <p class="instruction">Write your answers on the lines. (1 pt each)</p>
+
+  <div class="q-reorder"><span class="q-num">1</span><input class="reorder-input" data-answer="may" id="c1" placeholder="Which month is before June?"></div>
+  <div class="q-reorder"><span class="q-num">2</span><input class="reorder-input" data-answer="may tenth|may 10th|may 10" id="c2" placeholder="How do you say the date 5/10?"></div>
+  <div class="q-reorder"><span class="q-num">3</span><input class="reorder-input" data-answer="march" id="c3" placeholder="Which month is between February and April?"></div>
+  <div class="q-reorder"><span class="q-num">4</span><input class="reorder-input" data-answer="august twenty-fifth|august 25th|august 25" id="c4" placeholder="How do you say the date 8/25?"></div>
+  <div class="q-reorder"><span class="q-num">5</span><input class="reorder-input" data-answer="november" id="c5" placeholder="Which month is after October?"></div>
+  <div class="q-reorder"><span class="q-num">6</span><input class="reorder-input" data-answer="december" id="c6" placeholder="What is the twelfth month?"></div>
+  <div class="q-reorder"><span class="q-num">7</span><input class="reorder-input" data-answer="march first|march 1st|march 1" id="c7" placeholder="How do you say the date 3/1?"></div>
+</div>
+
+<!-- D: Put words in order Unit 2 -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">D.</span>
+    <span class="section-title">Put the words in order</span>
+    <span class="section-pts">5 pts</span>
+  </div>
+  <p class="instruction">Write the words in the correct order. (1 pt each)</p>
+  <p class="example"><strong>EXAMPLE:</strong> is / my / This / brother  →  This is my brother.</p>
+
+  <div class="q-reorder"><span class="q-num">1</span><span class="scrambled">grandparents / Are / Mexican / your / ?</span><input class="reorder-input" data-answer="are your grandparents mexican" id="u2d1" placeholder="Tu respuesta…"></div>
+  <div class="q-reorder"><span class="q-num">2</span><span class="scrambled">teacher / your / Is / mom / a / ?</span><input class="reorder-input" data-answer="is your mom a teacher" id="u2d2" placeholder="Tu respuesta…"></div>
+  <div class="q-reorder"><span class="q-num">3</span><span class="scrambled">tall / isn't / very / Ana / .</span><input class="reorder-input" data-answer="ana isn't very tall" id="u2d3" placeholder="Tu respuesta…"></div>
+  <div class="q-reorder"><span class="q-num">4</span><span class="scrambled">here / aren't / My / cousins / .</span><input class="reorder-input" data-answer="my cousins aren't here" id="u2d4" placeholder="Tu respuesta…"></div>
+  <div class="q-reorder"><span class="q-num">5</span><span class="scrambled">Italian / are / My / friends / .</span><input class="reorder-input" data-answer="my friends are italian" id="u2d5" placeholder="Tu respuesta…"></div>
+</div>
+
+<!-- E: 's not / 're not -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">E.</span>
+    <span class="section-title">Write 's not or 're not</span>
+    <span class="section-pts">5 pts</span>
+  </div>
+  <p class="instruction">Complete each sentence with the correct contraction. (1 pt each)</p>
+
+  <div class="q-fill"><span class="q-num">1</span><span class="q-text">We <input class="blank" data-answer="'re not" id="en1" size="7" maxlength="8"> from Spain. We're from Brazil.</span></div>
+  <div class="q-fill"><span class="q-num">2</span><span class="q-text">She <input class="blank" data-answer="'s not" id="en2" size="7" maxlength="8"> young. She's old.</span></div>
+  <div class="q-fill"><span class="q-num">3</span><span class="q-text">Carlos is my uncle. He <input class="blank" data-answer="'s not" id="en3" size="7" maxlength="8"> my dad.</span></div>
+  <div class="q-fill"><span class="q-num">4</span><span class="q-text">He <input class="blank" data-answer="'s not" id="en4" size="7" maxlength="8"> boring. He's funny!</span></div>
+  <div class="q-fill"><span class="q-num">5</span><span class="q-text">My sisters <input class="blank" data-answer="'re not" id="en5" size="7" maxlength="8"> students. They're teachers.</span></div>
+</div>
+
+<!-- F: Reading Unit 2 -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">F.</span>
+    <span class="section-title">Reading – Circle the correct answer</span>
+    <span class="section-pts">6 pts</span>
+  </div>
+  <p class="instruction">Read and choose A or B. (2 pts each)</p>
+
+  <div class="reading-box">
+    <div class="person">Maria is my aunt. She's forty years old and she's a doctor. She works in a hospital. Her job is very interesting. She has two children: a son who is ten and a daughter who is eight.</div>
+    <div class="person">Luis is my grandfather. He's from Mexico, but now he lives in Canada. He's eighty-five years old. His birthday is on January 5th. He loves spending time with his grandchildren.</div>
+  </div>
+
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">1</span> Maria's job is...</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="rf1" value="A"><span class="opt-letter">A</span> boring</label>
+      <label class="option-label"><input type="radio" name="rf1" value="B"><span class="opt-letter">B</span> interesting</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">2</span> Luis is...</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="rf2" value="A"><span class="opt-letter">A</span> young</label>
+      <label class="option-label"><input type="radio" name="rf2" value="B"><span class="opt-letter">B</span> old</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">3</span> Luis lives in...</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="rf3" value="A"><span class="opt-letter">A</span> Mexico</label>
+      <label class="option-label"><input type="radio" name="rf3" value="B"><span class="opt-letter">B</span> Canada</label>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     UNIT 3
+══════════════════════════════════════════ -->
+<div class="unit-header">
+  <span class="unit-badge">Unit 3</span>
+  <span class="unit-title">Food &amp; Drinks · Apartments · Questions</span>
+  <span class="unit-pts">20 pts</span>
+</div>
+
+<!-- A: Fill in drinks -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">A.</span>
+    <span class="section-title">Complete the sentences with the words</span>
+    <span class="section-pts">6 pts</span>
+  </div>
+  <p class="instruction">Use the words in parentheses. (1 pt each)</p>
+  <p class="example"><strong>EXAMPLE:</strong> Here's a glass of water with no ice.</p>
+
+  <div class="q-fill"><span class="q-num">1</span><span class="q-text">I drink <input class="blank" data-answer="coffee" id="t1a" size="8"> with two spoons of <input class="blank" data-answer="sugar" id="t1b" size="7">. <em style="color:#888;font-size:12px;">(coffee / sugar)</em></span></div>
+  <div class="q-fill"><span class="q-num">2</span><span class="q-text">"A cup of <input class="blank" data-answer="tea" id="t2a" size="5"> with a <input class="blank" data-answer="cookie" id="t2b" size="8">?" "Yes, please." <em style="color:#888;font-size:12px;">(tea / cookie)</em></span></div>
+  <div class="q-fill"><span class="q-num">3</span><span class="q-text">"A glass of <input class="blank" data-answer="milk" id="t3a" size="6">?" "Yes, please. With some <input class="blank" data-answer="sugar" id="t3b" size="7">." <em style="color:#888;font-size:12px;">(milk / sugar)</em></span></div>
+</div>
+
+<!-- B: Match -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">B.</span>
+    <span class="section-title">Match the questions and answers</span>
+    <span class="section-pts">5 pts</span>
+  </div>
+  <p class="instruction">Write the letter of the correct answer. (1 pt each)</p>
+  <p class="example"><strong>EXAMPLE:</strong> Is Ana your sister?  →  No, she's my cousin.</p>
+
+  <div style="margin-left:30px;margin-bottom:16px;font-size:13px;color:#555;font-style:italic;">
+    A = It's in Madrid. &nbsp;|&nbsp; B = No, he's my uncle. &nbsp;|&nbsp; C = My mom is 50, my dad is 55. &nbsp;|&nbsp; D = It's in the kitchen. &nbsp;|&nbsp; E = Her name is Sofia.
+  </div>
+
+  <div class="q-fill"><span class="q-num">1</span><span class="q-text">Where is your apartment? <select class="match-select" data-answer="A" id="m1"><option value="">?</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></span></div>
+  <div class="q-fill"><span class="q-num">2</span><span class="q-text">Is Carlos your brother? <select class="match-select" data-answer="B" id="m2"><option value="">?</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></span></div>
+  <div class="q-fill"><span class="q-num">3</span><span class="q-text">How old are your parents? <select class="match-select" data-answer="C" id="m3"><option value="">?</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></span></div>
+  <div class="q-fill"><span class="q-num">4</span><span class="q-text">Where's the refrigerator? <select class="match-select" data-answer="D" id="m4"><option value="">?</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></span></div>
+  <div class="q-fill"><span class="q-num">5</span><span class="q-text">What's your teacher's name? <select class="match-select" data-answer="E" id="m5"><option value="">?</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></span></div>
+</div>
+
+<!-- C: it is / it's not -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">C.</span>
+    <span class="section-title">Answer with <em>it is</em> or <em>it's not</em></span>
+    <span class="section-pts">4 pts</span>
+  </div>
+  <p class="instruction">Write the correct form on the line. (1 pt each)</p>
+
+  <div class="q-fill"><span class="q-num">1</span><span class="q-text">Is your apartment number 12? Yes, <input class="blank" data-answer="it is" id="it1" size="7">.</span></div>
+  <div class="q-fill"><span class="q-num">2</span><span class="q-text">Is your birthday in October? Yes, <input class="blank" data-answer="it is" id="it2" size="7">.</span></div>
+  <div class="q-fill"><span class="q-num">3</span><span class="q-text">Is your new chair big? No, <input class="blank" data-answer="it's not" id="it3" size="9">. It's small.</span></div>
+  <div class="q-fill"><span class="q-num">4</span><span class="q-text">Is your job boring? No, <input class="blank" data-answer="it's not" id="it4" size="9">. It's interesting.</span></div>
+</div>
+
+<!-- D: is/are questions -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">D.</span>
+    <span class="section-title">Complete questions with <em>is</em> or <em>are</em></span>
+    <span class="section-pts">5 pts</span>
+  </div>
+  <p class="instruction">Choose the correct verb form. (1 pt each)</p>
+
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">1</span> What ___ your name?</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="ia1" value="A"><span class="opt-letter">A</span> is</label>
+      <label class="option-label"><input type="radio" name="ia1" value="B"><span class="opt-letter">B</span> are</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">2</span> Where ___ you from?</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="ia2" value="A"><span class="opt-letter">A</span> is</label>
+      <label class="option-label"><input type="radio" name="ia2" value="B"><span class="opt-letter">B</span> are</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">3</span> How old ___ you?</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="ia3" value="A"><span class="opt-letter">A</span> is</label>
+      <label class="option-label"><input type="radio" name="ia3" value="B"><span class="opt-letter">B</span> are</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">4</span> What ___ your phone number?</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="ia4" value="A"><span class="opt-letter">A</span> is</label>
+      <label class="option-label"><input type="radio" name="ia4" value="B"><span class="opt-letter">B</span> are</label>
+    </div>
+  </div>
+  <div class="q-mcq">
+    <div class="q-mcq-stem"><span class="q-num">5</span> How many rooms ___ in your apartment?</div>
+    <div class="options">
+      <label class="option-label"><input type="radio" name="ia5" value="A"><span class="opt-letter">A</span> is</label>
+      <label class="option-label"><input type="radio" name="ia5" value="B"><span class="opt-letter">B</span> are</label>
+    </div>
+  </div>
+</div>
+
+<!-- Reading Unit 3 - NOT graded (open answers) replaced by TF -->
+<!-- E: Reading emails -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-letter">E.</span>
+    <span class="section-title">Reading Emails – True or False</span>
+    <span class="section-pts">5 pts</span>
+  </div>
+  <p class="instruction">Read the emails and circle True or False. (1 pt each)</p>
+
+  <div class="reading-box">
+    <div class="person"><strong>From: Carlos &nbsp;|&nbsp; To: Maria &nbsp;|&nbsp; Subject: How's life in Canada?</strong><br>Hi Maria, Do you like Toronto? Is it cold there? Are you living in a house or an apartment? Write soon! Love, Carlos</div>
+    <div class="person"><strong>From: Maria &nbsp;|&nbsp; To: Carlos &nbsp;|&nbsp; Subject: Re: How's life in Canada?</strong><br>Hi Carlos, Thanks for your email! I love Toronto. Yes, it's cold, but my apartment is warm. I live with three friends: one from Brazil, one from Japan, and one from Italy. Two of us are students, and one is a nurse. The apartment is next to the university. My bedroom is small, but the living room is big. Love, Maria</div>
+  </div>
+
+  <div class="q-tf"><span class="q-num">1</span><span class="tf-text">The first email is from Carlos to Maria.</span><div class="tf-options"><button class="tf-btn" data-group="re1" data-val="T" data-answer="T">True</button><button class="tf-btn" data-group="re1" data-val="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">2</span><span class="tf-text">Maria lives in a house.</span><div class="tf-options"><button class="tf-btn" data-group="re2" data-val="T">True</button><button class="tf-btn" data-group="re2" data-val="F" data-answer="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">3</span><span class="tf-text">Her friends are from Brazil, Japan, and Italy.</span><div class="tf-options"><button class="tf-btn" data-group="re3" data-val="T" data-answer="T">True</button><button class="tf-btn" data-group="re3" data-val="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">4</span><span class="tf-text">All of them are students.</span><div class="tf-options"><button class="tf-btn" data-group="re4" data-val="T">True</button><button class="tf-btn" data-group="re4" data-val="F" data-answer="F">False</button></div></div>
+  <div class="q-tf"><span class="q-num">5</span><span class="tf-text">The living room is small.</span><div class="tf-options"><button class="tf-btn" data-group="re5" data-val="T">True</button><button class="tf-btn" data-group="re5" data-val="F" data-answer="F">False</button></div></div>
+</div>
+
+<!-- SUBMIT -->
+<div class="submit-wrap">
+  <button class="btn-submit" onclick="gradeExam()">Calificar Examen →</button>
+</div>
+
+<!-- RESULT -->
+<div class="result-card" id="result-card">
+  <div class="result-score" id="r-score">0</div>
+  <div class="result-label">de 70 puntos</div>
+  <div class="result-msg" id="r-msg"></div>
+  <div class="result-sub" id="r-sub"></div>
+  <div class="unit-scores">
+    <div class="unit-score-chip"><div class="chip-label">Unit 1</div><div class="chip-val" id="u1-score">—</div></div>
+    <div class="unit-score-chip"><div class="chip-label">Unit 2</div><div class="chip-val" id="u2-score">—</div></div>
+    <div class="unit-score-chip"><div class="chip-label">Unit 3</div><div class="chip-val" id="u3-score">—</div></div>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ─── TF Buttons ───
+document.querySelectorAll('.tf-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.dataset.group;
+    document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  });
+});
+
+// ─── GRADING ───
+function norm(s) { return s.trim().toLowerCase().replace(/[?.!,']/g,'').replace(/\s+/g,' '); }
+
+function gradeBlank(id, answers) {
+  const el = document.getElementById(id);
+  if (!el) return 0;
+  const val = norm(el.value);
+  const correct = (answers || el.dataset.answer).split('|').map(norm);
+  const ok = correct.some(a => val === a);
+  el.classList.toggle('correct', ok);
+  el.classList.toggle('wrong', !ok && val !== '');
+  return ok ? 1 : 0;
+}
+
+function gradeMCQ(name, answer) {
+  const sel = document.querySelector(`input[name="${name}"]:checked`);
+  const labels = document.querySelectorAll(`input[name="${name}"]`);
+  labels.forEach(inp => {
+    const label = inp.closest('.option-label');
+    if (inp.value === answer) label.classList.add('correct-opt');
+    if (sel && inp.value !== answer && inp.checked) label.classList.add('wrong-opt');
+  });
+  return sel && sel.value === answer ? 1 : 0;
+}
+
+function gradeTF(group, answer) {
+  const btns = document.querySelectorAll(`[data-group="${group}"]`);
+  let selected = null;
+  btns.forEach(b => { if (b.classList.contains('selected')) selected = b.dataset.val; });
+  btns.forEach(b => {
+    if (b.dataset.val === answer) b.classList.add('correct-tf');
+    if (selected && b.dataset.val !== answer && b.classList.contains('selected')) b.classList.add('wrong-tf');
+  });
+  return selected === answer ? 1 : 0;
+}
+
+function gradeCat(el) {
+  const ans = el.dataset.answer; // M F B
+  const map = { M:'Masculine', F:'Feminine', B:'Both' };
+  return el.value === map[ans] ? 1 : 0;
+}
+
+function gradeSelect(id, answer) {
+  const el = document.getElementById(id);
+  return el && el.value === answer ? 1 : 0;
+}
+
+function gradeExam() {
+  let total = 0, u1 = 0, u2 = 0, u3 = 0;
+
+  // ── UNIT 1 ──
+  // A blanks
+  ['a1','a2','a3','a4','a5','a6'].forEach(id => { u1 += gradeBlank(id); });
+  // B MCQ nationalities B=correct for all except 2(A),3(A),4(A),5(A),8(B)
+  const bAnswers = {b1:'B',b2:'A',b3:'A',b4:'A',b5:'A',b6:'A',b7:'B',b8:'A'};
+  Object.entries(bAnswers).forEach(([n,a]) => { u1 += gradeMCQ(n,a); });
+  // C verb to be
+  const cAnswers = {c1:'A',c2:'A',c3:'A',c4:'B',c5:'B'};
+  Object.entries(cAnswers).forEach(([n,a]) => { u1 += gradeMCQ(n,a); });
+  // D word order
+  ['d1','d2','d3','d4','d5','d6','d7'].forEach(id => { u1 += gradeBlank(id); });
+  // E true/false
+  ['e1','e2','e3','e4','e5','e6'].forEach(g => {
+    const btn = document.querySelector(`[data-group="${g}"][data-answer]`);
+    if (btn) u1 += gradeTF(g, btn.dataset.answer);
+  });
+
+  // ── UNIT 2 ──
+  // A categories
+  document.querySelectorAll('.cat-select').forEach(el => { u2 += gradeCat(el); });
+  // B adjectives
+  ['ba1','ba2','ba3','ba4'].forEach(id => { u2 += gradeBlank(id); });
+  // C dates
+  ['c1','c2','c3','c4','c5','c6','c7'].forEach(id => { u2 += gradeBlank(id); });
+  // D word order
+  ['u2d1','u2d2','u2d3','u2d4','u2d5'].forEach(id => { u2 += gradeBlank(id); });
+  // E 's not / 're not
+  ['en1','en2','en3','en4','en5'].forEach(id => { u2 += gradeBlank(id); });
+  // F reading MCQ (2pts each)
+  const rfAns = {rf1:'B',rf2:'B',rf3:'B'};
+  Object.entries(rfAns).forEach(([n,a]) => { u2 += gradeMCQ(n,a) * 2; });
+
+  // ── UNIT 3 ──
+  // A fill in
+  ['t1a','t1b','t2a','t2b','t3a','t3b'].forEach(id => { u3 += gradeBlank(id); });
+  // B match
+  ['m1','m2','m3','m4','m5'].forEach(id => { u3 += gradeSelect(id, document.getElementById(id).dataset.answer); });
+  // C it is / it's not
+  ['it1','it2','it3','it4'].forEach(id => { u3 += gradeBlank(id); });
+  // D is/are MCQ
+  const iaAns = {ia1:'A',ia2:'B',ia3:'B',ia4:'A',ia5:'B'};
+  Object.entries(iaAns).forEach(([n,a]) => { u3 += gradeMCQ(n,a); });
+  // E reading TF
+  ['re1','re2','re3','re4','re5'].forEach(g => {
+    const btn = document.querySelector(`[data-group="${g}"][data-answer]`);
+    if (btn) u3 += gradeTF(g, btn.dataset.answer);
+  });
+
+  total = u1 + u2 + u3;
+  const pct = Math.round(total/70*100);
+
+  // Show results
+  document.getElementById('r-score').textContent = total;
+  document.getElementById('u1-score').textContent = u1 + '/32';
+  document.getElementById('u2-score').textContent = u2 + '/32';
+  document.getElementById('u3-score').textContent = u3 + '/20';
+
+  let msg, sub;
+  if (pct >= 90) { msg = '🏆 Excelente trabajo!'; sub = 'Dominio sobresaliente de los tres temas.'; }
+  else if (pct >= 75) { msg = '👏 Muy bien hecho!'; sub = 'Buen dominio general del contenido.'; }
+  else if (pct >= 60) { msg = '📚 Buen esfuerzo.'; sub = 'Repasa las secciones marcadas en rojo.'; }
+  else { msg = '💪 Sigue practicando.'; sub = 'Te recomendamos repasar las unidades con más detenimiento.'; }
+
+  document.getElementById('r-msg').textContent = msg;
+  document.getElementById('r-sub').textContent = `${pct}% de calificación — ${sub}`;
+  document.getElementById('result-card').classList.add('visible');
+  document.getElementById('score-pill').style.display = 'block';
+  document.getElementById('score-pill').textContent = `${total}/70`;
+  document.getElementById('live-score').textContent = '';
+
+  document.getElementById('result-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+
+</body>
+</html>
